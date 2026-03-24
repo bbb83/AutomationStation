@@ -7,7 +7,7 @@ from dotenv import load_dotenv, dotenv_values
 from db import init_db, save_results 
 
 
-load_dotenv('env-2')
+load_dotenv('.env')
 oids = {
     "Hostname": os.getenv("SNMP_OID_HOSTNAME"),
     "Description": os.getenv("SNMP_OID_DESCRIPTION"),

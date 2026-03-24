@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 DB_PATH = 'snmp_results.db'
 
@@ -13,6 +14,16 @@ def init_db():
         Uptime TEXT,
         Interfaces TEXT,
         last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS discovered_hosts (
+        ip TEXT PRIMARY KEY,
+        mac TEXT,
+        vendor TEXT,
+        os_name TEXT,
+        open_ports TEXT,
+        scan_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
     conn.commit()
@@ -30,3 +41,18 @@ def save_results(results):
     conn.commit()
     conn.close()
     print(f"Saved {len(results)} ip addresses into {DB_PATH}")
+
+
+def save_discovered_hosts(hosts):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    for h in hosts:
+        open_ports = [p for p in h.get("ports", []) if p.get("state") == "open"]
+        cursor.execute('''
+            INSERT OR REPLACE INTO discovered_hosts (ip, mac, vendor, os_name, open_ports)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (h.get("ip"), h.get("mac"), h.get("vendor"),
+              (h.get("os") or {}).get("name"), json.dumps(open_ports)))
+    conn.commit()
+    conn.close()
+    print(f"Saved {len(hosts)} hosts into {DB_PATH}")
