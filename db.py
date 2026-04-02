@@ -1,8 +1,9 @@
 import sqlite3
 
-DB_PATH = 'snmp_results.db'
+DB_PATH = 'scan_results.db'
 
-def init_db():
+# SNMP
+def init_snmp_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute('''
@@ -18,8 +19,7 @@ def init_db():
     conn.commit()
     conn.close()
 
-
-def save_results(results):
+def save_snmp_results(results):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     for ip_found in results:
@@ -30,3 +30,31 @@ def save_results(results):
     conn.commit()
     conn.close()
     print(f"Saved {len(results)} ip addresses into {DB_PATH}")
+
+# DHCP
+def init_dhcp_db():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS dhcp_results (
+            ip TEXT PRIMARY KEY,
+            mac TEXT,
+            hostname TEXT,
+            expiry TEXT,
+            last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+def save_dhcp_results(results):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    for device in results:
+        cursor.execute('''
+            INSERT OR REPLACE INTO dhcp_results (ip, mac, hostname, expiry)
+            VALUES (:ip, :mac, :hostname, :expiry)
+        ''', device)
+    conn.commit()
+    conn.close()
+    print(f"Saved {len(results)} DHCP leases into {DB_PATH}")
