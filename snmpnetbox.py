@@ -4,10 +4,10 @@ from pysnmp.hlapi.v3arch.asyncio import *
 from pysnmp import debug
 import os
 from dotenv import load_dotenv, dotenv_values
-from db import init_db, save_results 
+from db import init_snmp_db, save_snmp_results 
 
 
-load_dotenv('env-2')
+load_dotenv('.env')
 oids = {
     "Hostname": os.getenv("SNMP_OID_HOSTNAME"),
     "Description": os.getenv("SNMP_OID_DESCRIPTION"),
@@ -32,7 +32,7 @@ async def run():
     batch_size = 50
     results = []
 
-    init_db()
+    init_snmp_db()
 
     for i in range(0, len(hosts), batch_size): 
         batch = hosts[i:i + batch_size]
@@ -42,7 +42,7 @@ async def run():
 
     snmpEngine.close_dispatcher()
     results = [r for r in results if r is not None]
-    save_results(results)
+    save_snmp_results(results)
     print(results) 
 
 async def query(snmpEngine, ip):
