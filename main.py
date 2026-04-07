@@ -8,7 +8,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from cidr import validate_cidr
 from runner import run_nmap_xml
 from parser import live_ips_from_discovery, parse_hosts
-from db import init_db, save_discovered_hosts
+from db import init_snmp_db, save_discovered_hosts
 from snmpnetbox import run as run_snmp
 from netbox_integration import push_hosts_to_netbox
 from netbox_scoring import ensure_scoring_fields, apply_scoring
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     if not SUBNET:
         print("SUBNET not set in .env"); sys.exit(1)
 
-    init_db()
+    init_snmp_db()
     hosts = run_scan(validate_cidr(SUBNET))
     print(json.dumps(hosts, indent=2))
     save_discovered_hosts(hosts)
