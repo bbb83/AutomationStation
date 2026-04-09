@@ -74,4 +74,5 @@ async def query(snmpEngine, ip):
         pass
     return None
 
-asyncio.run(run())
+if __name__ == "__main__":
+    asyncio.run(run())

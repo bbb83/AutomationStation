@@ -2,6 +2,7 @@ from models.device_record import DeviceRecord
 from models.scoring_result import ScoringResult
 from netbox.client import NetBoxClient
 
+#this shit doesnt work ignore
 
 class NetBoxSync:
     def __init__(self, client: NetBoxClient):

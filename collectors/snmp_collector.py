@@ -25,7 +25,7 @@ from models.evidence import EvidenceRecord
 class SNMPCollector:
     name = "snmp"
 
-    def __init__(self, env_file: str = "env-2") -> None:
+    def __init__(self, env_file: str = ".env") -> None:
         load_dotenv(env_file)
 
         self.oids = {

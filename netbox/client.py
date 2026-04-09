@@ -1,5 +1,6 @@
 import requests
 
+#this shit dont work, ignore
 
 class NetBoxClient:
     def __init__(self, base_url: str, token: str):

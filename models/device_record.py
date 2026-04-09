@@ -22,7 +22,7 @@ class DeviceRecord:
             self.mac = ev.mac
 
         if ev.hostname:
-            self.hostname.add(ev.hostname)
+            self.hostnames.add(ev.hostname)
 
         if ev.manufacturer and not self.manufacturer:
             self.manufacturer= ev.manufacturer

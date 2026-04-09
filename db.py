@@ -1,6 +1,8 @@
 import sqlite3
 import json
 
+from models.evidence import EvidenceRecord
+
 DB_PATH = 'scan_results.db'
 
 # SNMP
@@ -70,6 +72,26 @@ def save_dhcp_results(results):
     conn.close()
     print(f"Saved {len(results)} DHCP leases into {DB_PATH}")
 
+def load_dhcp_results():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT ip, mac, hostname, expiry FROM dhcp_results")
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    results = []
+    for r in rows:
+        results.append({
+            "ip": r[0],
+            "mac": r[1],
+            "hostname": r[2],
+            "expiry": r[3],
+        })
+
+    return results
+
 
 def save_discovered_hosts(hosts):
     conn = sqlite3.connect(DB_PATH)
@@ -84,3 +106,43 @@ def save_discovered_hosts(hosts):
     conn.commit()
     conn.close()
     print(f"Saved {len(hosts)} hosts into {DB_PATH}")
+
+def load_snmp_results():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT ip, Hostname, Description, Uptime, Interfaces FROM snmp_results")
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    results = []
+    for r in rows:
+        results.append({
+            "ip": r[0],
+            "Hostname": r[1],
+            "Description": r[2],
+            "Uptime": r[3],
+            "Interfaces": r[4],
+        })
+
+    return results
+
+def snmp_to_evidence(snmp_rows):
+    evidence = []
+
+    for row in snmp_rows:
+        evidence.append(EvidenceRecord(
+            source="snmp",
+            ip=row.get("ip"),
+            hostname=row.get("Hostname"),
+            attributes={
+                "snmp_reachable": True,
+                "sysName": row.get("Hostname"),
+                "sysDescr": row.get("Description"),
+                "sysUpTime": row.get("Uptime"),
+                "ifNumber": row.get("Interfaces"),
+            }
+        ))
+
+    return evidence

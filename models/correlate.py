@@ -11,7 +11,7 @@ def correlate_evidence(evidence_list: list[EvidenceRecord]) -> list[DeviceRecord
     devices: dict[str, DeviceRecord] = {}
 
     for ev in evidence_list:
-        key = ev.mac or ev.ip
+        key = ev.ip or ev.mac
         if not key:
             continue
 

@@ -76,4 +76,5 @@ def dhcp_scan():
     return results
 
 
-dhcp_scan()
+if __name__ == "__main__":
+    dhcp_scan()
