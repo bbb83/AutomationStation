@@ -21,6 +21,8 @@ from db import load_snmp_results, load_dhcp_results
 from dhcp import dhcp_scan
 from dns_lookup import lookup_ip_dns
 
+from ieeething.oui_lookup import OUILookup
+
 SUBNET       = os.getenv("SUBNET", "")
 NETBOX_URL   = os.getenv("NETBOX_URL", "").rstrip("/")
 NETBOX_TOKEN = os.getenv("NETBOX_TOKEN", "")
@@ -42,36 +44,61 @@ def run_scan(cidr):
     return hosts
 
 
-def hosts_to_evidence(hosts):
-    """Convert parser.py host dicts into EvidenceRecord format for scoring."""
+def hosts_to_evidence(hosts, oui_lookup):
+    #Convert parser.py host dicts into EvidenceRecord format for scoring
     evidence = []
+
     for h in hosts:
+        ip = h.get("ip")
+        mac = h.get("mac")
+        nmap_vendor = h.get("vendor")
+
         open_ports = [p for p in h.get("ports", []) if p.get("state") == "open"]
         services = [p.get("service") for p in open_ports if p.get("service")]
 
+        # Initialize manufacturer safely
+        manufacturer = nmap_vendor if nmap_vendor else None
+        oui_result = None
+
+        # Use IEEE OUI lookup if Nmap vendor is missing
+        if not manufacturer and mac:
+            oui_result = oui_lookup.lookup(mac)
+            if oui_result:
+                manufacturer = oui_result["manufacturer_name"]
+                print(f"[DEBUG] OUI resolved {mac} → {manufacturer}")
+
+        # Create Nmap evidence
         evidence.append(EvidenceRecord(
             source="nmap",
-            ip=h.get("ip"),
-            mac=h.get("mac"),
+            ip=ip,
+            mac=mac,
             hostname=(h.get("hostnames") or [None])[0],
-            manufacturer=h.get("vendor"),
+            manufacturer=manufacturer,
             attributes={
                 "open_ports": open_ports,
                 "service_profile": services if services else None,
                 "os_name": (h.get("os") or {}).get("name"),
+                "vendor": manufacturer,
             },
         ))
 
-        if h.get("vendor"):
+        # Add separate OUI evidence if manufacturer is known
+        if manufacturer:
+            attributes = {"manufacturer_name": manufacturer}
+
+            if oui_result:
+                attributes["oui_prefix"] = oui_result["oui_prefix"]
+
             evidence.append(EvidenceRecord(
                 source="oui",
-                ip=h.get("ip"),
-                mac=h.get("mac"),
-                manufacturer=h.get("vendor"),
-                attributes={"manufacturer_name": h.get("vendor")},
+                ip=ip,
+                mac=mac,
+                manufacturer=manufacturer,
+                attributes=attributes,
             ))
 
     return evidence
+
 
 def snmp_to_evidence(snmp_rows): #for snmp results to go from database to EvidenceRecord
     evidence = []
@@ -179,8 +206,13 @@ if __name__ == "__main__":
     print("[3.5] Running DHCP scan...")
     dhcp_scan()
 
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    oui_path = os.path.join(base_dir, "ieeething", "oui_file.csv")
+    oui_lookup = OUILookup(oui_path)
+
     print("[6] Scoring devices...")
-    nmap_evidence = hosts_to_evidence(hosts)
+    nmap_evidence = hosts_to_evidence(hosts, oui_lookup)
 
     snmp_rows = load_snmp_results()
     print("[DEBUG] SNMP rows loaded:", len(snmp_rows))
