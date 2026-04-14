@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from dotenv import load_dotenv
+from mail import send_issue_report
 load_dotenv()
 
 import os, sys, json, asyncio, urllib3
@@ -295,3 +296,5 @@ if __name__ == "__main__":
                 apply_scoring(device_id, score_data)
             else:
                 print(f"    Could not find device '{name}' in NetBox for scoring")
+
+        send_issue_report(scored_results)
