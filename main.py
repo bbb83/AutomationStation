@@ -27,6 +27,23 @@ SUBNET       = os.getenv("SUBNET", "")
 NETBOX_URL   = os.getenv("NETBOX_URL", "").rstrip("/")
 NETBOX_TOKEN = os.getenv("NETBOX_TOKEN", "")
 
+# map Bryce's test names → netbox_scoring.py keys
+TEST_NAME_MAP = {
+    "snmp_response":                        "snmp_response",
+    "nmap_open_ports_detected":             "nmap_open_ports",
+    "dhcp_active_lease":                    "dhcp_active_lease",
+    "dns_resolves_A/PTR":                   "dns_resolves",
+    "snmp_mac/interface_matches_netbox":    "snmp_mac_match",
+    "dhcp_mac_matches_netbox":              "dhcp_mac_match",
+    "dns_hostname_matches_netbox":          "dns_hostname_match",
+    "nmap_fingerprint_is_consistent":       "nmap_fingerprint_match",
+    "mac_mismatch_with_netbox":             "mac_mismatch_penalty",
+    "snmp_sysObjectID_and_sysDescr_found":  "snmp_sysobjectid",
+    "nmap_service_profile":                 "nmap_service_profile",
+    "ieee_oui_manufacturer_found":          "ieee_oui_manufacturer",
+    "dns_gives_name_hints":                 "dns_naming_convention",
+}
+
 
 def run_scan(cidr):
     print(f"[1] Ping sweep on {cidr}...")
@@ -269,7 +286,11 @@ if __name__ == "__main__":
 
         import requests
         for device, result in scored_results:
-            name = device.get_hostname() or f"host-{device.ip.replace('.', '-')}"
+            # use nmap hostname only — matches netbox_integration.py's device_name() logic
+            nmap_ev = [e for e in device.evidence if e.source == "nmap"]
+            nmap_hostname = nmap_ev[0].hostname if nmap_ev else None
+            name = nmap_hostname or f"host-{device.ip.replace('.', '-')}"
+
             r = requests.get(
                 f"{NETBOX_URL}/api/dcim/devices/",
                 params={"name": name},
@@ -291,7 +312,8 @@ if __name__ == "__main__":
                 for cat in ["existence", "identity", "classification"]:
                     cat_tests = [t for t in result.tests if t.category == cat]
                     for t in cat_tests:
-                        score_data[cat][t.name.replace(" ", "_")] = t.passed
+                        key = TEST_NAME_MAP.get(t.name.replace(" ", "_"), t.name.replace(" ", "_"))
+                        score_data[cat][key] = t.passed
                 apply_scoring(device_id, score_data)
             else:
                 print(f"    Could not find device '{name}' in NetBox for scoring")
