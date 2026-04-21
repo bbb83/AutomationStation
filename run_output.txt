@@ -1,0 +1,2251 @@
+[1] Ping sweep on 192.168.202.0/24...
+    17 host(s) alive
+[2] Deep scan on 17 host(s)...
+    Done — 17 host(s) parsed
+[
+  {
+    "ip": "192.168.202.1",
+    "status": "up",
+    "hostnames": [],
+    "mac": "F0:7F:06:45:C7:44",
+    "vendor": "Cisco Systems",
+    "os": null,
+    "ports": []
+  },
+  {
+    "ip": "192.168.202.12",
+    "status": "up",
+    "hostnames": [],
+    "mac": "00:BE:43:9A:8F:5B",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 3389,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ms-wbt-server",
+        "product": null,
+        "version": null
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.16",
+    "status": "up",
+    "hostnames": [],
+    "mac": "00:C0:FF:F7:F2:D1",
+    "vendor": "Seagate Cloud Systems",
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "9.0"
+      },
+      {
+        "port": 427,
+        "proto": "tcp",
+        "state": "open",
+        "service": "svrloc",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 443,
+        "proto": "tcp",
+        "state": "open",
+        "service": "https",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 873,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rsync",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8000,
+        "proto": "tcp",
+        "state": "filtered",
+        "service": "http-alt",
+        "product": null,
+        "version": null
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.17",
+    "status": "up",
+    "hostnames": [],
+    "mac": "00:C0:FF:F6:9D:6F",
+    "vendor": "Seagate Cloud Systems",
+    "os": null,
+    "ports": [
+      {
+        "port": 7,
+        "proto": "tcp",
+        "state": "open",
+        "service": "echo",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 9,
+        "proto": "tcp",
+        "state": "open",
+        "service": "discard",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 13,
+        "proto": "tcp",
+        "state": "open",
+        "service": "daytime",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 21,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ftp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 23,
+        "proto": "tcp",
+        "state": "open",
+        "service": "telnet",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 25,
+        "proto": "tcp",
+        "state": "open",
+        "service": "smtp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 26,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rsftp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 37,
+        "proto": "tcp",
+        "state": "open",
+        "service": "time",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 53,
+        "proto": "tcp",
+        "state": "open",
+        "service": "domain",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 79,
+        "proto": "tcp",
+        "state": "open",
+        "service": "finger",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 80,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 81,
+        "proto": "tcp",
+        "state": "open",
+        "service": "hosts2-ns",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 88,
+        "proto": "tcp",
+        "state": "open",
+        "service": "kerberos-sec",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 106,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pop3pw",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 110,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pop3",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 111,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rpcbind",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 113,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ident",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 119,
+        "proto": "tcp",
+        "state": "open",
+        "service": "nntp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 135,
+        "proto": "tcp",
+        "state": "open",
+        "service": "msrpc",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 139,
+        "proto": "tcp",
+        "state": "open",
+        "service": "netbios-ssn",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 143,
+        "proto": "tcp",
+        "state": "open",
+        "service": "imap",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 144,
+        "proto": "tcp",
+        "state": "open",
+        "service": "news",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 179,
+        "proto": "tcp",
+        "state": "open",
+        "service": "bgp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 199,
+        "proto": "tcp",
+        "state": "open",
+        "service": "smux",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 389,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ldap",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 427,
+        "proto": "tcp",
+        "state": "open",
+        "service": "svrloc",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 443,
+        "proto": "tcp",
+        "state": "open",
+        "service": "https",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 444,
+        "proto": "tcp",
+        "state": "open",
+        "service": "snpp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 445,
+        "proto": "tcp",
+        "state": "open",
+        "service": "microsoft-ds",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 465,
+        "proto": "tcp",
+        "state": "open",
+        "service": "smtps",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 513,
+        "proto": "tcp",
+        "state": "open",
+        "service": "login",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 514,
+        "proto": "tcp",
+        "state": "open",
+        "service": "shell",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 515,
+        "proto": "tcp",
+        "state": "open",
+        "service": "printer",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 543,
+        "proto": "tcp",
+        "state": "open",
+        "service": "klogin",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 544,
+        "proto": "tcp",
+        "state": "open",
+        "service": "kshell",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 548,
+        "proto": "tcp",
+        "state": "open",
+        "service": "afp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 554,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rtsp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 587,
+        "proto": "tcp",
+        "state": "open",
+        "service": "submission",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 631,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ipp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 646,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ldp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 873,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rsync",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 990,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ftps",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 993,
+        "proto": "tcp",
+        "state": "open",
+        "service": "imaps",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 995,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pop3s",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1025,
+        "proto": "tcp",
+        "state": "open",
+        "service": "NFS-or-IIS",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1026,
+        "proto": "tcp",
+        "state": "open",
+        "service": "LSA-or-nterm",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1027,
+        "proto": "tcp",
+        "state": "open",
+        "service": "IIS",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1028,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1029,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ms-lsa",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1110,
+        "proto": "tcp",
+        "state": "open",
+        "service": "nfsd-status",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1433,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ms-sql-s",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1720,
+        "proto": "tcp",
+        "state": "open",
+        "service": "h323q931",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1723,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pptp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1755,
+        "proto": "tcp",
+        "state": "open",
+        "service": "wms",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1900,
+        "proto": "tcp",
+        "state": "open",
+        "service": "upnp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 2000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "cisco-sccp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 2001,
+        "proto": "tcp",
+        "state": "open",
+        "service": "dc",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 2049,
+        "proto": "tcp",
+        "state": "open",
+        "service": "nfs",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 2121,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ccproxy-ftp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 2717,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pn-requester",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ppp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3128,
+        "proto": "tcp",
+        "state": "open",
+        "service": "squid-http",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3306,
+        "proto": "tcp",
+        "state": "open",
+        "service": "mysql",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3389,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ms-wbt-server",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3986,
+        "proto": "tcp",
+        "state": "open",
+        "service": "mapper-ws_ethd",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 4899,
+        "proto": "tcp",
+        "state": "open",
+        "service": "radmin",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "upnp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5009,
+        "proto": "tcp",
+        "state": "open",
+        "service": "airport-admin",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5051,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ida-agent",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5060,
+        "proto": "tcp",
+        "state": "open",
+        "service": "sip",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5101,
+        "proto": "tcp",
+        "state": "open",
+        "service": "admdog",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5190,
+        "proto": "tcp",
+        "state": "open",
+        "service": "aol",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5357,
+        "proto": "tcp",
+        "state": "open",
+        "service": "wsdapi",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5432,
+        "proto": "tcp",
+        "state": "open",
+        "service": "postgresql",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5631,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pcanywheredata",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5666,
+        "proto": "tcp",
+        "state": "open",
+        "service": "nrpe",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5800,
+        "proto": "tcp",
+        "state": "open",
+        "service": "vnc-http",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5900,
+        "proto": "tcp",
+        "state": "open",
+        "service": "vnc",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 6000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "X11",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 6001,
+        "proto": "tcp",
+        "state": "open",
+        "service": "X11:1",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 6646,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 7070,
+        "proto": "tcp",
+        "state": "open",
+        "service": "realserver",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8008,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8009,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ajp13",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8080,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8081,
+        "proto": "tcp",
+        "state": "open",
+        "service": "blackice-icecap",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8443,
+        "proto": "tcp",
+        "state": "open",
+        "service": "https-alt",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8888,
+        "proto": "tcp",
+        "state": "open",
+        "service": "sun-answerbook",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 9100,
+        "proto": "tcp",
+        "state": "open",
+        "service": "jetdirect",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 9999,
+        "proto": "tcp",
+        "state": "open",
+        "service": "abyss",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 10000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "snet-sensor-mgmt",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 32768,
+        "proto": "tcp",
+        "state": "open",
+        "service": "filenet-tms",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49152,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49153,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49154,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49155,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49156,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49157,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.18",
+    "status": "up",
+    "hostnames": [],
+    "mac": "00:C0:FF:F6:9D:70",
+    "vendor": "Seagate Cloud Systems",
+    "os": null,
+    "ports": [
+      {
+        "port": 7,
+        "proto": "tcp",
+        "state": "open",
+        "service": "echo",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 9,
+        "proto": "tcp",
+        "state": "open",
+        "service": "discard",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 13,
+        "proto": "tcp",
+        "state": "open",
+        "service": "daytime",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 21,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ftp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 23,
+        "proto": "tcp",
+        "state": "open",
+        "service": "telnet",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 25,
+        "proto": "tcp",
+        "state": "open",
+        "service": "smtp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 26,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rsftp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 37,
+        "proto": "tcp",
+        "state": "open",
+        "service": "time",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 53,
+        "proto": "tcp",
+        "state": "open",
+        "service": "domain",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 79,
+        "proto": "tcp",
+        "state": "open",
+        "service": "finger",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 80,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 81,
+        "proto": "tcp",
+        "state": "open",
+        "service": "hosts2-ns",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 88,
+        "proto": "tcp",
+        "state": "open",
+        "service": "kerberos-sec",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 106,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pop3pw",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 110,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pop3",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 111,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rpcbind",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 113,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ident",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 119,
+        "proto": "tcp",
+        "state": "open",
+        "service": "nntp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 135,
+        "proto": "tcp",
+        "state": "open",
+        "service": "msrpc",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 139,
+        "proto": "tcp",
+        "state": "open",
+        "service": "netbios-ssn",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 143,
+        "proto": "tcp",
+        "state": "open",
+        "service": "imap",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 144,
+        "proto": "tcp",
+        "state": "open",
+        "service": "news",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 179,
+        "proto": "tcp",
+        "state": "open",
+        "service": "bgp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 199,
+        "proto": "tcp",
+        "state": "open",
+        "service": "smux",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 389,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ldap",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 427,
+        "proto": "tcp",
+        "state": "open",
+        "service": "svrloc",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 443,
+        "proto": "tcp",
+        "state": "open",
+        "service": "https",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 444,
+        "proto": "tcp",
+        "state": "open",
+        "service": "snpp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 445,
+        "proto": "tcp",
+        "state": "open",
+        "service": "microsoft-ds",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 465,
+        "proto": "tcp",
+        "state": "open",
+        "service": "smtps",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 513,
+        "proto": "tcp",
+        "state": "open",
+        "service": "login",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 514,
+        "proto": "tcp",
+        "state": "open",
+        "service": "shell",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 515,
+        "proto": "tcp",
+        "state": "open",
+        "service": "printer",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 543,
+        "proto": "tcp",
+        "state": "open",
+        "service": "klogin",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 544,
+        "proto": "tcp",
+        "state": "open",
+        "service": "kshell",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 548,
+        "proto": "tcp",
+        "state": "open",
+        "service": "afp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 554,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rtsp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 587,
+        "proto": "tcp",
+        "state": "open",
+        "service": "submission",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 631,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ipp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 646,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ldp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 873,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rsync",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 990,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ftps",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 993,
+        "proto": "tcp",
+        "state": "open",
+        "service": "imaps",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 995,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pop3s",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1025,
+        "proto": "tcp",
+        "state": "open",
+        "service": "NFS-or-IIS",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1026,
+        "proto": "tcp",
+        "state": "open",
+        "service": "LSA-or-nterm",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1027,
+        "proto": "tcp",
+        "state": "open",
+        "service": "IIS",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1028,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1029,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ms-lsa",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1110,
+        "proto": "tcp",
+        "state": "open",
+        "service": "nfsd-status",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1433,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ms-sql-s",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1720,
+        "proto": "tcp",
+        "state": "open",
+        "service": "h323q931",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1723,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pptp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1755,
+        "proto": "tcp",
+        "state": "open",
+        "service": "wms",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 1900,
+        "proto": "tcp",
+        "state": "open",
+        "service": "upnp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 2000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "cisco-sccp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 2001,
+        "proto": "tcp",
+        "state": "open",
+        "service": "dc",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 2049,
+        "proto": "tcp",
+        "state": "open",
+        "service": "nfs",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 2121,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ccproxy-ftp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 2717,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pn-requester",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ppp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3128,
+        "proto": "tcp",
+        "state": "open",
+        "service": "squid-http",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3306,
+        "proto": "tcp",
+        "state": "open",
+        "service": "mysql",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3389,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ms-wbt-server",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3986,
+        "proto": "tcp",
+        "state": "open",
+        "service": "mapper-ws_ethd",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 4899,
+        "proto": "tcp",
+        "state": "open",
+        "service": "radmin",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "upnp",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5009,
+        "proto": "tcp",
+        "state": "open",
+        "service": "airport-admin",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5051,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ida-agent",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5060,
+        "proto": "tcp",
+        "state": "open",
+        "service": "sip",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5101,
+        "proto": "tcp",
+        "state": "open",
+        "service": "admdog",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5190,
+        "proto": "tcp",
+        "state": "open",
+        "service": "aol",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5357,
+        "proto": "tcp",
+        "state": "open",
+        "service": "wsdapi",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5432,
+        "proto": "tcp",
+        "state": "open",
+        "service": "postgresql",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5631,
+        "proto": "tcp",
+        "state": "open",
+        "service": "pcanywheredata",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5666,
+        "proto": "tcp",
+        "state": "open",
+        "service": "nrpe",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5800,
+        "proto": "tcp",
+        "state": "open",
+        "service": "vnc-http",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 5900,
+        "proto": "tcp",
+        "state": "open",
+        "service": "vnc",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 6000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "X11",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 6001,
+        "proto": "tcp",
+        "state": "open",
+        "service": "X11:1",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 6646,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 7070,
+        "proto": "tcp",
+        "state": "open",
+        "service": "realserver",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8008,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8009,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ajp13",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8080,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http-proxy",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8081,
+        "proto": "tcp",
+        "state": "open",
+        "service": "blackice-icecap",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8443,
+        "proto": "tcp",
+        "state": "open",
+        "service": "https-alt",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 8888,
+        "proto": "tcp",
+        "state": "open",
+        "service": "sun-answerbook",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 9100,
+        "proto": "tcp",
+        "state": "open",
+        "service": "jetdirect",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 9999,
+        "proto": "tcp",
+        "state": "open",
+        "service": "abyss",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 10000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "snet-sensor-mgmt",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 32768,
+        "proto": "tcp",
+        "state": "open",
+        "service": "filenet-tms",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49152,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49153,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49154,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49155,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49156,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 49157,
+        "proto": "tcp",
+        "state": "open",
+        "service": "unknown",
+        "product": null,
+        "version": null
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.29",
+    "status": "up",
+    "hostnames": [],
+    "mac": "C8:4B:D6:8D:0D:06",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "9.2p1 Debian 2+deb12u7"
+      },
+      {
+        "port": 111,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rpcbind",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3128,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": "Proxmox Virtual Environment REST API",
+        "version": "3.0"
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.33",
+    "status": "up",
+    "hostnames": [],
+    "mac": "C8:4B:D6:8F:E4:68",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "9.2p1 Debian 2+deb12u7"
+      },
+      {
+        "port": 111,
+        "proto": "tcp",
+        "state": "open",
+        "service": "rpcbind",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 3128,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": "Proxmox Virtual Environment REST API",
+        "version": "3.0"
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.132",
+    "status": "up",
+    "hostnames": [],
+    "mac": "BC:24:11:E4:28:37",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "9.6p1 Ubuntu 3ubuntu13.15"
+      },
+      {
+        "port": 80,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": "Golang net/http server",
+        "version": null
+      },
+      {
+        "port": 443,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": "Golang net/http server",
+        "version": null
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.139",
+    "status": "up",
+    "hostnames": [],
+    "mac": "BC:24:11:40:C1:EA",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "9.6p1 Ubuntu 3ubuntu13.15"
+      },
+      {
+        "port": 25,
+        "proto": "tcp",
+        "state": "open",
+        "service": "smtp",
+        "product": "Postfix smtpd",
+        "version": null
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.141",
+    "status": "up",
+    "hostnames": [],
+    "mac": "BC:24:11:41:A7:40",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 53,
+        "proto": "tcp",
+        "state": "open",
+        "service": "domain",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 88,
+        "proto": "tcp",
+        "state": "open",
+        "service": "kerberos-sec",
+        "product": "Microsoft Windows Kerberos",
+        "version": null
+      },
+      {
+        "port": 135,
+        "proto": "tcp",
+        "state": "open",
+        "service": "msrpc",
+        "product": "Microsoft Windows RPC",
+        "version": null
+      },
+      {
+        "port": 139,
+        "proto": "tcp",
+        "state": "open",
+        "service": "netbios-ssn",
+        "product": "Microsoft Windows netbios-ssn",
+        "version": null
+      },
+      {
+        "port": 389,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ldap",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 445,
+        "proto": "tcp",
+        "state": "open",
+        "service": "microsoft-ds",
+        "product": null,
+        "version": null
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.224",
+    "status": "up",
+    "hostnames": [],
+    "mac": "BC:24:11:F6:53:6A",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "8.9p1 Ubuntu 3ubuntu0.14"
+      },
+      {
+        "port": 80,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": "Apache httpd",
+        "version": "2.4.52"
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.227",
+    "status": "up",
+    "hostnames": [],
+    "mac": "BC:24:11:8F:48:16",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "8.9p1 Ubuntu 3ubuntu0.14"
+      },
+      {
+        "port": 25,
+        "proto": "tcp",
+        "state": "open",
+        "service": "smtp",
+        "product": "Postfix smtpd",
+        "version": null
+      },
+      {
+        "port": 80,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": "Apache httpd",
+        "version": "2.4.52"
+      },
+      {
+        "port": 443,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": "Apache httpd",
+        "version": "2.4.52"
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.229",
+    "status": "up",
+    "hostnames": [],
+    "mac": "C0:56:27:69:CA:31",
+    "vendor": "Belkin International",
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "Dropbear sshd",
+        "version": null
+      },
+      {
+        "port": 80,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": null,
+        "version": null
+      },
+      {
+        "port": 443,
+        "proto": "tcp",
+        "state": "open",
+        "service": "https",
+        "product": null,
+        "version": null
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.231",
+    "status": "up",
+    "hostnames": [],
+    "mac": "BC:24:11:FA:C4:C1",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "9.6p1 Ubuntu 3ubuntu13.15"
+      },
+      {
+        "port": 8000,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http-alt",
+        "product": null,
+        "version": null
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.232",
+    "status": "up",
+    "hostnames": [],
+    "mac": "BC:24:11:F1:90:79",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "8.9p1 Ubuntu 3ubuntu0.14"
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.240",
+    "status": "up",
+    "hostnames": [],
+    "mac": "BC:24:11:95:0A:95",
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "8.9p1 Ubuntu 3ubuntu0.14"
+      },
+      {
+        "port": 80,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": "Apache httpd",
+        "version": "2.4.52"
+      }
+    ]
+  },
+  {
+    "ip": "192.168.202.225",
+    "status": "up",
+    "hostnames": [],
+    "mac": null,
+    "vendor": null,
+    "os": null,
+    "ports": [
+      {
+        "port": 22,
+        "proto": "tcp",
+        "state": "open",
+        "service": "ssh",
+        "product": "OpenSSH",
+        "version": "8.9p1 Ubuntu 3ubuntu0.14"
+      },
+      {
+        "port": 80,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": "nginx",
+        "version": "1.18.0"
+      },
+      {
+        "port": 443,
+        "proto": "tcp",
+        "state": "open",
+        "service": "http",
+        "product": "nginx",
+        "version": "1.18.0"
+      }
+    ]
+  }
+]
+Saved 17 hosts into scan_results.db
+[3] Running SNMP scan...
+Found SNMP device: 192.168.202.225
+Saved 1 ip addresses into scan_results.db
+[{'ip': '192.168.202.225', 'Hostname': 'netbox', 'Description': 'Linux netbox 5.15.0-170-generic #180-Ubuntu SMP Fri Jan 9 16:10:31 UTC 2026 x86_64', 'Uptime': '423123218', 'Interfaces': 'No Such Instance currently exists at this OID'}]
+[3.5] Running DHCP scan...
+[+] Found: {'ip': '192.168.202.132', 'mac': 'bc:24:11:e4:28:37', 'hostname': 'vm132', 'expiry': 'N/A'}
+[+] Found: {'ip': '192.168.202.139', 'mac': 'bc:24:11:40:c1:ea', 'hostname': 'srv-139', 'expiry': 'N/A'}
+[+] Found: {'ip': '192.168.202.141', 'mac': 'bc:24:11:41:a7:40', 'hostname': 'sen-ad1', 'expiry': 'N/A'}
+[+] Found: {'ip': '192.168.202.224', 'mac': 'bc:24:11:f6:53:6a', 'hostname': 'project', 'expiry': 'N/A'}
+[+] Found: {'ip': '192.168.202.227', 'mac': 'bc:24:11:8f:48:16', 'hostname': 'srv-227', 'expiry': 'N/A'}
+[+] Found: {'ip': '192.168.202.229', 'mac': 'c0:56:27:69:ca:31', 'hostname': 'linksys-router', 'expiry': 'N/A'}
+[+] Found: {'ip': '192.168.202.231', 'mac': 'bc:24:11:fa:c4:c1', 'hostname': 'kea-dhcp', 'expiry': 'N/A'}
+[+] Found: {'ip': '192.168.202.232', 'mac': 'bc:24:11:f1:90:79', 'hostname': 'ansible-awx', 'expiry': 'N/A'}
+[+] Found: {'ip': '192.168.202.240', 'mac': 'bc:24:11:95:0a:95', 'hostname': 'snipe-it', 'expiry': 'N/A'}
+
+[*] 9 lease(s) found in pool range 192.168.202.132–192.168.202.252
+Saved 9 DHCP leases into scan_results.db
+[6] Scoring devices...
+[DEBUG] OUI resolved 00:BE:43:9A:8F:5B → Dell Inc.
+[DEBUG] OUI resolved C8:4B:D6:8D:0D:06 → Dell Inc.
+[DEBUG] OUI resolved C8:4B:D6:8F:E4:68 → Dell Inc.
+[DEBUG] OUI resolved BC:24:11:E4:28:37 → Proxmox Server Solutions GmbH
+[DEBUG] OUI resolved BC:24:11:40:C1:EA → Proxmox Server Solutions GmbH
+[DEBUG] OUI resolved BC:24:11:41:A7:40 → Proxmox Server Solutions GmbH
+[DEBUG] OUI resolved BC:24:11:F6:53:6A → Proxmox Server Solutions GmbH
+[DEBUG] OUI resolved BC:24:11:8F:48:16 → Proxmox Server Solutions GmbH
+[DEBUG] OUI resolved BC:24:11:FA:C4:C1 → Proxmox Server Solutions GmbH
+[DEBUG] OUI resolved BC:24:11:F1:90:79 → Proxmox Server Solutions GmbH
+[DEBUG] OUI resolved BC:24:11:95:0A:95 → Proxmox Server Solutions GmbH
+[DEBUG] SNMP rows loaded: 1
+[DEBUG] DHCP rows loaded: 9
+[DEBUG] DNS evidence count: 17
+[DEBUG] Nmap evidence: 33
+[DEBUG] SNMP evidence: 1
+[DEBUG] DHCP evidence: 9
+[DEBUG] DNS evidence: 17
+[DEBUG] TOTAL evidence: 60
+[DEBUG] Total devices after correlation: 17
+[DEBUG] DEVICE IP: 192.168.202.1
+[DEBUG] SOURCES: ['nmap', 'oui', 'dns']
+[DEBUG] DEVICE IP: 192.168.202.12
+[DEBUG] SOURCES: ['nmap', 'oui', 'dns']
+[DEBUG] DEVICE IP: 192.168.202.16
+[DEBUG] SOURCES: ['nmap', 'oui', 'dns']
+[DEBUG] DEVICE IP: 192.168.202.17
+[DEBUG] SOURCES: ['nmap', 'oui', 'dns']
+[DEBUG] DEVICE IP: 192.168.202.18
+[DEBUG] SOURCES: ['nmap', 'oui', 'dns']
+
+[DEBUG] Device 192.168.202.1
+[DEBUG] Sources: ['nmap', 'oui', 'dns']
+[DEBUG] Scores: {'existence': 5, 'identity': 0, 'classification': 15, 'total': 7}
+
+[DEBUG] Device 192.168.202.12
+[DEBUG] Sources: ['nmap', 'oui', 'dns']
+[DEBUG] Scores: {'existence': 30, 'identity': 0, 'classification': 40, 'total': 23}
+
+[DEBUG] Device 192.168.202.16
+[DEBUG] Sources: ['nmap', 'oui', 'dns']
+[DEBUG] Scores: {'existence': 30, 'identity': 0, 'classification': 40, 'total': 23}
+
+[DEBUG] Device 192.168.202.17
+[DEBUG] Sources: ['nmap', 'oui', 'dns']
+[DEBUG] Scores: {'existence': 30, 'identity': 0, 'classification': 40, 'total': 23}
+
+[DEBUG] Device 192.168.202.18
+[DEBUG] Sources: ['nmap', 'oui', 'dns']
+[DEBUG] Scores: {'existence': 30, 'identity': 0, 'classification': 40, 'total': 23}
+
+[DEBUG] Device 192.168.202.29
+[DEBUG] Sources: ['nmap', 'oui', 'dns']
+[DEBUG] Scores: {'existence': 25, 'identity': 0, 'classification': 40, 'total': 22}
+
+[DEBUG] Device 192.168.202.33
+[DEBUG] Sources: ['nmap', 'oui', 'dns']
+[DEBUG] Scores: {'existence': 30, 'identity': 0, 'classification': 40, 'total': 23}
+
+[DEBUG] Device 192.168.202.132
+[DEBUG] Sources: ['nmap', 'oui', 'dhcp', 'dns']
+[DEBUG] Scores: {'existence': 50, 'identity': 0, 'classification': 40, 'total': 30}
+
+[DEBUG] Device 192.168.202.139
+[DEBUG] Sources: ['nmap', 'oui', 'dhcp', 'dns']
+[DEBUG] Scores: {'existence': 50, 'identity': 0, 'classification': 45, 'total': 32}
+
+[DEBUG] Device 192.168.202.141
+[DEBUG] Sources: ['nmap', 'oui', 'dhcp', 'dns']
+[DEBUG] Scores: {'existence': 50, 'identity': 0, 'classification': 40, 'total': 30}
+
+[DEBUG] Device 192.168.202.224
+[DEBUG] Sources: ['nmap', 'oui', 'dhcp', 'dns']
+[DEBUG] Scores: {'existence': 50, 'identity': 0, 'classification': 40, 'total': 30}
+
+[DEBUG] Device 192.168.202.227
+[DEBUG] Sources: ['nmap', 'oui', 'dhcp', 'dns']
+[DEBUG] Scores: {'existence': 50, 'identity': 0, 'classification': 40, 'total': 30}
+
+[DEBUG] Device 192.168.202.229
+[DEBUG] Sources: ['nmap', 'oui', 'dhcp', 'dns']
+[DEBUG] Scores: {'existence': 50, 'identity': 0, 'classification': 40, 'total': 30}
+
+[DEBUG] Device 192.168.202.231
+[DEBUG] Sources: ['nmap', 'oui', 'dhcp', 'dns']
+[DEBUG] Scores: {'existence': 50, 'identity': 0, 'classification': 45, 'total': 32}
+
+[DEBUG] Device 192.168.202.232
+[DEBUG] Sources: ['nmap', 'oui', 'dhcp', 'dns']
+[DEBUG] Scores: {'existence': 50, 'identity': 0, 'classification': 40, 'total': 30}
+
+[DEBUG] Device 192.168.202.240
+[DEBUG] Sources: ['nmap', 'oui', 'dhcp', 'dns']
+[DEBUG] Scores: {'existence': 50, 'identity': 0, 'classification': 40, 'total': 30}
+
+[DEBUG] Device 192.168.202.225
+[DEBUG] Sources: ['nmap', 'snmp', 'dns']
+[DEBUG] Scores: {'existence': 80, 'identity': 0, 'classification': 85, 'total': 55}
+[4] Checking NetBox...
+    NetBox 4.5.2 — OK
+    Ensuring scoring custom fields exist...
+[5] Pushing devices to NetBox...
+    ✔ Created device 'host-192-168-202-1' (id=242)
+    ✔ Created device 'host-192-168-202-12' (id=243)
+    ✔ Created device 'host-192-168-202-16' (id=244)
+    ✔ Created device 'host-192-168-202-17' (id=245)
+    ✔ Created device 'host-192-168-202-18' (id=246)
+    ✔ Created device 'host-192-168-202-29' (id=247)
+    ✔ Created device 'host-192-168-202-33' (id=248)
+    ✔ Created device 'host-192-168-202-132' (id=249)
+    ✔ Created device 'host-192-168-202-139' (id=250)
+    ✔ Created device 'host-192-168-202-141' (id=251)
+    ✔ Created device 'host-192-168-202-224' (id=252)
+    ✔ Created device 'host-192-168-202-227' (id=253)
+    ✔ Created device 'host-192-168-202-229' (id=254)
+    ✔ Created device 'host-192-168-202-231' (id=255)
+    ✔ Created device 'host-192-168-202-232' (id=256)
+    ✔ Created device 'host-192-168-202-240' (id=257)
+    ✔ Created device 'host-192-168-202-225' (id=258)
+    Results: 17 pushed, 0 skipped, 0 failed
+    ✔ Applied scoring to device 242 (total: 7)
+    ✔ Applied scoring to device 243 (total: 23)
+    ✔ Applied scoring to device 244 (total: 23)
+    ✔ Applied scoring to device 245 (total: 23)
+    ✔ Applied scoring to device 246 (total: 23)
+    ✔ Applied scoring to device 247 (total: 22)
+    ✔ Applied scoring to device 248 (total: 23)
+    ✔ Applied scoring to device 249 (total: 30)
+    ✔ Applied scoring to device 250 (total: 32)
+    ✔ Applied scoring to device 251 (total: 30)
+    ✔ Applied scoring to device 252 (total: 30)
+    ✔ Applied scoring to device 253 (total: 30)
+    ✔ Applied scoring to device 254 (total: 30)
+    ✔ Applied scoring to device 255 (total: 32)
+    ✔ Applied scoring to device 256 (total: 30)
+    ✔ Applied scoring to device 257 (total: 30)
+    ✔ Applied scoring to device 258 (total: 55)
