@@ -134,7 +134,7 @@ about device reliability.
 -   NetBox REST API
 -   SQLite or PostgreSQL
 -   SQLAlchemy
--   Docker (optional)
+-   Docker
 
 ------------------------------------------------------------------------
 
