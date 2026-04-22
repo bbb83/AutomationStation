@@ -2,8 +2,8 @@
 netbox_integration.py — Push discovered hosts into NetBox.
 
 Creates prerequisites (site, manufacturer, device role, device type) on the
-fly if they don't already exist, then creates/updates devices and their
-primary IP addresses.
+fly if they don't already exist, then creates/updates devices, their primary
+IP addresses, MAC addresses, and their open-port services.
 """
 
 import os
@@ -91,9 +91,7 @@ def ensure_device_role(name: str = DEFAULT_ROLE_NAME) -> int | None:
 
 
 def ensure_device_type(manufacturer_id: int, model: str, vendor_name: str = "") -> int | None:
-    # slug must be globally unique, so prefix with vendor to avoid collisions
     slug = slugify(f"{vendor_name} {model}" if vendor_name else model)
-    # search by manufacturer AND slug so each vendor gets its own type
     obj = _get_or_create(
         "/dcim/device-types/",
         {"manufacturer_id": manufacturer_id, "slug": slug},
@@ -125,10 +123,46 @@ def infer_role(host: dict) -> str:
     return DEFAULT_ROLE_NAME
 
 
+# ── Description builder ──────────────────────────────────────────────────────
+
+def build_description(host: dict) -> str:
+    """Build a useful NetBox device description from scan data."""
+    parts = []
+
+    # OS name (from nmap)
+    os_name = (host.get("os") or {}).get("name")
+    if os_name:
+        parts.append(os_name)
+
+    # SNMP sysDescr (trimmed)
+    snmp_desc = host.get("snmp_description")
+    if snmp_desc:
+        short = snmp_desc.split(",")[0][:80]
+        parts.append(f"SNMP: {short}")
+
+    # open port count + a few notable services
+    open_ports = [p for p in host.get("ports", []) if p.get("state") == "open"]
+    if open_ports:
+        notable = []
+        for p in open_ports[:3]:
+            svc = p.get("service") or str(p.get("port"))
+            product = p.get("product")
+            if product:
+                notable.append(f"{svc} ({product})")
+            else:
+                notable.append(svc)
+        more = "..." if len(open_ports) > 3 else ""
+        parts.append(f"{len(open_ports)} open ports: {', '.join(notable)}{more}")
+
+    return " | ".join(parts) if parts else ""
+
+
 # ── Device push ──────────────────────────────────────────────────────────────
 
 def device_name(host: dict) -> str:
     """Pick a human-readable name for the device."""
+    if host.get("dns_hostname"):
+        return host["dns_hostname"]
     hostnames = host.get("hostnames", [])
     if hostnames:
         return hostnames[0]
@@ -139,7 +173,6 @@ def push_device(host: dict, site_id: int, role_id: int, dtype_id: int) -> dict |
     """Create or update a device in NetBox. Returns device dict or None."""
     name = device_name(host)
 
-    # check if device already exists by name
     r = requests.get(f"{API}/dcim/devices/", params={"name": name}, **REQ)
     if r.status_code == 200 and r.json().get("results"):
         existing = r.json()["results"][0]
@@ -153,8 +186,13 @@ def push_device(host: dict, site_id: int, role_id: int, dtype_id: int) -> dict |
         "device_type": dtype_id,
         "status":      "active",
     }
+    desc = build_description(host)
+    if desc:
+        payload["description"] = desc
+
+    # surface the MAC as a custom field so it's visible on the device's main page
     if host.get("mac"):
-        payload["description"] = f"MAC: {host['mac']}"
+        payload["custom_fields"] = {"primary_mac": host["mac"].upper()}
 
     r = requests.post(f"{API}/dcim/devices/", json=payload, **REQ)
     if r.status_code == 201:
@@ -164,11 +202,11 @@ def push_device(host: dict, site_id: int, role_id: int, dtype_id: int) -> dict |
     return None
 
 
-def assign_ip(device: dict, ip: str) -> None:
-    """Create an interface + IP address and set it as the device's primary IPv4."""
+def assign_ip(device: dict, ip: str, mac: str | None = None) -> None:
+    """Create an interface + IP address and set it as the device's primary IPv4.
+    Optionally attach a MAC address to the interface."""
     device_id = device["id"]
 
-    # ensure a default interface exists
     iface = _get_or_create(
         "/dcim/interfaces/",
         {"device_id": device_id, "name": "eth0"},
@@ -177,6 +215,27 @@ def assign_ip(device: dict, ip: str) -> None:
     if not iface:
         return
 
+    # attach MAC to interface (NetBox 4.x uses a separate MACAddress object)
+    if mac:
+        mac_clean = mac.upper()
+        r = requests.get(f"{API}/dcim/mac-addresses/", params={
+            "mac_address": mac_clean,
+            "interface_id": iface["id"],
+        }, **REQ)
+        if not (r.status_code == 200 and r.json().get("results")):
+            r = requests.post(f"{API}/dcim/mac-addresses/", json={
+                "mac_address":          mac_clean,
+                "assigned_object_type": "dcim.interface",
+                "assigned_object_id":   iface["id"],
+            }, **REQ)
+            if r.status_code == 201:
+                mac_obj = r.json()
+                # set as primary MAC on the interface
+                requests.patch(f"{API}/dcim/interfaces/{iface['id']}/",
+                               json={"primary_mac_address": mac_obj["id"]}, **REQ)
+            else:
+                print(f"    ✘ Failed to attach MAC {mac_clean}: {r.status_code} {r.text[:150]}")
+
     # create IP (with /24 mask) and assign to interface
     addr = f"{ip}/24"
     r = requests.get(f"{API}/ipam/ip-addresses/", params={"address": addr}, **REQ)
@@ -184,8 +243,8 @@ def assign_ip(device: dict, ip: str) -> None:
         ip_obj = r.json()["results"][0]
     else:
         r = requests.post(f"{API}/ipam/ip-addresses/", json={
-            "address":           addr,
-            "status":            "active",
+            "address":              addr,
+            "status":               "active",
             "assigned_object_type": "dcim.interface",
             "assigned_object_id":   iface["id"],
         }, **REQ)
@@ -195,9 +254,55 @@ def assign_ip(device: dict, ip: str) -> None:
             print(f"    ✘ Failed to create IP {addr}: {r.status_code} {r.text[:200]}")
             return
 
-    # set as primary IP on device
     requests.patch(f"{API}/dcim/devices/{device_id}/",
                    json={"primary_ip4": ip_obj["id"]}, **REQ)
+
+
+# ── Services (open ports → NetBox Service objects) ───────────────────────────
+
+def push_services(device_id: int, host: dict) -> int:
+    """Create NetBox Service objects for each open port. Returns count created."""
+    created = 0
+    for p in host.get("ports", []):
+        if p.get("state") != "open":
+            continue
+
+        port_num = p.get("port")
+        proto = p.get("proto")
+        service = p.get("service") or f"port-{port_num}"
+        if not isinstance(port_num, int) or not proto:
+            continue
+
+        # skip if already exists on this device (NetBox 4.5 uses parent_object_*)
+        r = requests.get(f"{API}/ipam/services/", params={
+            "parent_object_id": device_id,
+            "port": port_num,
+            "protocol": proto,
+        }, **REQ)
+        if r.status_code == 200 and r.json().get("results"):
+            continue
+
+        desc_parts = []
+        if p.get("product"):
+            desc_parts.append(p["product"])
+        if p.get("version"):
+            desc_parts.append(p["version"])
+        description = " ".join(desc_parts)[:200]
+
+        payload = {
+            "parent_object_type": "dcim.device",
+            "parent_object_id":   device_id,
+            "name":               service[:100],
+            "ports":              [port_num],
+            "protocol":           proto,
+            "description":        description,
+        }
+        r = requests.post(f"{API}/ipam/services/", json=payload, **REQ)
+        if r.status_code == 201:
+            created += 1
+        else:
+            print(f"    ✘ Failed to create service {service}/{port_num}: {r.status_code} {r.text[:150]}")
+    return created
 
 
 # ── Main entry point ─────────────────────────────────────────────────────────
@@ -209,7 +314,10 @@ def push_hosts_to_netbox(hosts: list[dict]) -> dict:
     Each host dict should match the parser.py output format:
         { ip, status, hostnames, mac, vendor, os, ports }
 
-    Optionally include a "confidence" key (int 0-100) from Bryce's scoring.
+    Optionally enriched in main.py with:
+        dns_hostname, snmp_description, snmp_hostname
+
+    Optionally include a "confidence" key (int 0-100) from scoring.
     Hosts below CONFIDENCE_THRESHOLD are skipped.
 
     Returns {"pushed": N, "skipped": N, "failed": N}.
@@ -220,7 +328,6 @@ def push_hosts_to_netbox(hosts: list[dict]) -> dict:
         print("    ✘ NETBOX_URL or NETBOX_TOKEN not set — skipping push")
         return stats
 
-    # filter by confidence if scores are present
     qualified = []
     for h in hosts:
         score = h.get("confidence")
@@ -234,7 +341,6 @@ def push_hosts_to_netbox(hosts: list[dict]) -> dict:
         print("    No hosts qualified for NetBox push")
         return stats
 
-    # ensure shared prerequisites
     site_id = ensure_site()
     if not site_id:
         print("    ✘ Could not create site — aborting push")
@@ -255,7 +361,10 @@ def push_hosts_to_netbox(hosts: list[dict]) -> dict:
 
         device = push_device(h, site_id, role_id, dtype_id)
         if device:
-            assign_ip(device, h["ip"])
+            assign_ip(device, h["ip"], h.get("mac"))
+            svc_count = push_services(device["id"], h)
+            if svc_count:
+                print(f"    → {svc_count} service(s) created for {device['name']}")
             stats["pushed"] += 1
         else:
             stats["failed"] += 1

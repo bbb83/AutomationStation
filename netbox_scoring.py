@@ -35,6 +35,7 @@ Score data format (from Bryce's scoring module):
 import os
 import requests
 import urllib3
+from datetime import datetime, timezone
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -54,9 +55,6 @@ COLOR_PASS = "4caf50"   # green
 COLOR_FAIL = "f44336"   # red
 
 # ── Scoring checks mapped to tag names ───────────────────────────────────────
-# Each key matches what Bryce's scoring dict should contain.
-# Format: { dict_key: human-readable label }
-
 EXISTENCE_CHECKS = {
     "snmp_response":     "SNMP Response",
     "nmap_open_ports":   "Nmap Open Ports",
@@ -85,6 +83,8 @@ CUSTOM_FIELDS = [
     {"name": "confidence_identity",       "label": "Confidence: Identity",       "type": "integer"},
     {"name": "confidence_classification", "label": "Confidence: Classification", "type": "integer"},
     {"name": "confidence_total",          "label": "Confidence: Total",          "type": "integer"},
+    {"name": "last_seen",                 "label": "Last Seen",                  "type": "date"},
+    {"name": "primary_mac",               "label": "Primary MAC",                "type": "text"},
 ]
 
 
@@ -195,6 +195,9 @@ def apply_scoring(device_id, score_data):
         patch["custom_fields"]["confidence_classification"] = classif["score"]
     if "total" in score_data:
         patch["custom_fields"]["confidence_total"] = score_data["total"]
+
+    # always stamp last_seen on every scoring pass
+    patch["custom_fields"]["last_seen"] = datetime.now(timezone.utc).date().isoformat()
 
     if tag_ids:
         patch["tags"] = tag_ids
