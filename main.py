@@ -163,11 +163,13 @@ def dns_to_evidence(hosts):
         if not ip:
             continue
 
+        # prefer the hostname already resolved in step 3.7 so push and scoring agree
+        cached_hostname = h.get("dns_hostname")
         dns_data = lookup_ip_dns(ip)
         reverse_dns = dns_data.get("reverse_dns", {})
         forward_dns = dns_data.get("forward_dns", {})
 
-        hostname = reverse_dns.get("hostname")
+        hostname = cached_hostname or reverse_dns.get("hostname")
 
         naming_hint = False
         if hostname:
@@ -224,10 +226,35 @@ if __name__ == "__main__":
     print("[3.5] Running DHCP scan...")
     dhcp_scan()
 
+    print("[3.7] Resolving DNS hostnames for naming...")
+    for h in hosts:
+        if h.get("ip"):
+            dns_data = lookup_ip_dns(h["ip"])
+            dns_hostname = dns_data.get("reverse_dns", {}).get("hostname")
+            if dns_hostname:
+                h["dns_hostname"] = dns_hostname
+                print(f"    {h['ip']} → {dns_hostname}")
 
+    # Load OUI lookup once, reuse for both enrichment and scoring
     base_dir = os.path.dirname(os.path.abspath(__file__))
     oui_path = os.path.join(base_dir, "ieeething", "oui_file.csv")
     oui_lookup = OUILookup(oui_path)
+
+    print("[3.8] Enriching hosts with SNMP + OUI data for NetBox push...")
+    snmp_by_ip = {row["ip"]: row for row in load_snmp_results()}
+    for h in hosts:
+        # SNMP sysDescr + hostname (used in device description)
+        snmp_row = snmp_by_ip.get(h.get("ip"))
+        if snmp_row:
+            h["snmp_description"] = snmp_row.get("Description")
+            h["snmp_hostname"] = snmp_row.get("Hostname")
+
+        # OUI vendor fallback if nmap didn't give one (fixes Manufacturer=Unknown in NetBox)
+        if not h.get("vendor") and h.get("mac"):
+            oui_result = oui_lookup.lookup(h["mac"])
+            if oui_result:
+                h["vendor"] = oui_result["manufacturer_name"]
+                print(f"    {h['ip']} vendor → {h['vendor']} (from OUI)")
 
     print("[6] Scoring devices...")
     nmap_evidence = hosts_to_evidence(hosts, oui_lookup)
@@ -287,10 +314,12 @@ if __name__ == "__main__":
 
         import requests
         for device, result in scored_results:
-            # use nmap hostname only — matches netbox_integration.py's device_name() logic
+            # prefer DNS hostname, then nmap, then synthesized — matches netbox_integration.py's device_name()
+            dns_ev = [e for e in device.evidence if e.source == "dns" and e.hostname]
             nmap_ev = [e for e in device.evidence if e.source == "nmap"]
+            dns_hostname = dns_ev[0].hostname if dns_ev else None
             nmap_hostname = nmap_ev[0].hostname if nmap_ev else None
-            name = nmap_hostname or f"host-{device.ip.replace('.', '-')}"
+            name = dns_hostname or nmap_hostname or f"host-{device.ip.replace('.', '-')}"
 
             r = requests.get(
                 f"{NETBOX_URL}/api/dcim/devices/",

@@ -2097,32 +2097,41 @@ Saved 17 hosts into scan_results.db
 [3] Running SNMP scan...
 Found SNMP device: 192.168.202.225
 Saved 1 ip addresses into scan_results.db
-[{'ip': '192.168.202.225', 'Hostname': 'netbox', 'Description': 'Linux netbox 5.15.0-170-generic #180-Ubuntu SMP Fri Jan 9 16:10:31 UTC 2026 x86_64', 'Uptime': '423123218', 'Interfaces': 'No Such Instance currently exists at this OID'}]
+[{'ip': '192.168.202.225', 'Hostname': 'netbox', 'Description': 'Linux netbox 5.15.0-170-generic #180-Ubuntu SMP Fri Jan 9 16:10:31 UTC 2026 x86_64', 'Uptime': '475262191', 'Interfaces': 'No Such Instance currently exists at this OID'}]
 [3.5] Running DHCP scan...
-[+] Found: {'ip': '192.168.202.132', 'mac': 'bc:24:11:e4:28:37', 'hostname': 'vm132', 'expiry': 'N/A'}
-[+] Found: {'ip': '192.168.202.139', 'mac': 'bc:24:11:40:c1:ea', 'hostname': 'srv-139', 'expiry': 'N/A'}
-[+] Found: {'ip': '192.168.202.141', 'mac': 'bc:24:11:41:a7:40', 'hostname': 'sen-ad1', 'expiry': 'N/A'}
-[+] Found: {'ip': '192.168.202.224', 'mac': 'bc:24:11:f6:53:6a', 'hostname': 'project', 'expiry': 'N/A'}
-[+] Found: {'ip': '192.168.202.227', 'mac': 'bc:24:11:8f:48:16', 'hostname': 'srv-227', 'expiry': 'N/A'}
-[+] Found: {'ip': '192.168.202.229', 'mac': 'c0:56:27:69:ca:31', 'hostname': 'linksys-router', 'expiry': 'N/A'}
-[+] Found: {'ip': '192.168.202.231', 'mac': 'bc:24:11:fa:c4:c1', 'hostname': 'kea-dhcp', 'expiry': 'N/A'}
-[+] Found: {'ip': '192.168.202.232', 'mac': 'bc:24:11:f1:90:79', 'hostname': 'ansible-awx', 'expiry': 'N/A'}
-[+] Found: {'ip': '192.168.202.240', 'mac': 'bc:24:11:95:0a:95', 'hostname': 'snipe-it', 'expiry': 'N/A'}
 
-[*] 9 lease(s) found in pool range 192.168.202.132–192.168.202.252
-Saved 9 DHCP leases into scan_results.db
+[*] 0 lease(s) found in pool range 192.168.202.132–192.168.202.252
+Saved 0 DHCP leases into scan_results.db
+[3.7] Resolving DNS hostnames for naming...
+    192.168.202.1 → sen.connect.nm.gov
+    192.168.202.12 → host-12.sen.connect.nm.gov
+    192.168.202.16 → powervault.sen.connect.nm.gov
+    192.168.202.17 → host-17.sen.connect.nm.gov
+    192.168.202.18 → host-18.sen.connect.nm.gov
+    192.168.202.33 → vm133.sen.connect.nm.gov
+    192.168.202.132 → vm132.sen.connect.nm.gov
+    192.168.202.139 → srv-139.sen.connect.nm.gov
+    192.168.202.141 → sen-ad1.sen.connect.nm.gov
+    192.168.202.224 → project.sen.connect.nm.gov
+    192.168.202.227 → rtir.sen.connect.nm.gov
+    192.168.202.229 → linksys-rouer.sen.connect.nm.gov
+    192.168.202.231 → kea-dhcp.sen.connect.nm.gov
+    192.168.202.232 → ansible-awx.sen.connect.nm.gov
+    192.168.202.240 → snipe-it.sen.connect.nm.gov
+    192.168.202.225 → netbox.sen.connect.nm.gov
+[3.8] Enriching hosts with SNMP + OUI data for NetBox push...
+    192.168.202.12 vendor → Dell Inc. (from OUI)
+    192.168.202.29 vendor → Dell Inc. (from OUI)
+    192.168.202.33 vendor → Dell Inc. (from OUI)
+    192.168.202.132 vendor → Proxmox Server Solutions GmbH (from OUI)
+    192.168.202.139 vendor → Proxmox Server Solutions GmbH (from OUI)
+    192.168.202.141 vendor → Proxmox Server Solutions GmbH (from OUI)
+    192.168.202.224 vendor → Proxmox Server Solutions GmbH (from OUI)
+    192.168.202.227 vendor → Proxmox Server Solutions GmbH (from OUI)
+    192.168.202.231 vendor → Proxmox Server Solutions GmbH (from OUI)
+    192.168.202.232 vendor → Proxmox Server Solutions GmbH (from OUI)
+    192.168.202.240 vendor → Proxmox Server Solutions GmbH (from OUI)
 [6] Scoring devices...
-[DEBUG] OUI resolved 00:BE:43:9A:8F:5B → Dell Inc.
-[DEBUG] OUI resolved C8:4B:D6:8D:0D:06 → Dell Inc.
-[DEBUG] OUI resolved C8:4B:D6:8F:E4:68 → Dell Inc.
-[DEBUG] OUI resolved BC:24:11:E4:28:37 → Proxmox Server Solutions GmbH
-[DEBUG] OUI resolved BC:24:11:40:C1:EA → Proxmox Server Solutions GmbH
-[DEBUG] OUI resolved BC:24:11:41:A7:40 → Proxmox Server Solutions GmbH
-[DEBUG] OUI resolved BC:24:11:F6:53:6A → Proxmox Server Solutions GmbH
-[DEBUG] OUI resolved BC:24:11:8F:48:16 → Proxmox Server Solutions GmbH
-[DEBUG] OUI resolved BC:24:11:FA:C4:C1 → Proxmox Server Solutions GmbH
-[DEBUG] OUI resolved BC:24:11:F1:90:79 → Proxmox Server Solutions GmbH
-[DEBUG] OUI resolved BC:24:11:95:0A:95 → Proxmox Server Solutions GmbH
 [DEBUG] SNMP rows loaded: 1
 [DEBUG] DHCP rows loaded: 9
 [DEBUG] DNS evidence count: 17
@@ -2213,39 +2222,57 @@ Saved 9 DHCP leases into scan_results.db
 [4] Checking NetBox...
     NetBox 4.5.2 — OK
     Ensuring scoring custom fields exist...
+    ✔ Created custom field: Primary MAC
 [5] Pushing devices to NetBox...
-    ✔ Created device 'host-192-168-202-1' (id=242)
-    ✔ Created device 'host-192-168-202-12' (id=243)
-    ✔ Created device 'host-192-168-202-16' (id=244)
-    ✔ Created device 'host-192-168-202-17' (id=245)
-    ✔ Created device 'host-192-168-202-18' (id=246)
-    ✔ Created device 'host-192-168-202-29' (id=247)
-    ✔ Created device 'host-192-168-202-33' (id=248)
-    ✔ Created device 'host-192-168-202-132' (id=249)
-    ✔ Created device 'host-192-168-202-139' (id=250)
-    ✔ Created device 'host-192-168-202-141' (id=251)
-    ✔ Created device 'host-192-168-202-224' (id=252)
-    ✔ Created device 'host-192-168-202-227' (id=253)
-    ✔ Created device 'host-192-168-202-229' (id=254)
-    ✔ Created device 'host-192-168-202-231' (id=255)
-    ✔ Created device 'host-192-168-202-232' (id=256)
-    ✔ Created device 'host-192-168-202-240' (id=257)
-    ✔ Created device 'host-192-168-202-225' (id=258)
+    ✔ Created device 'sen.connect.nm.gov' (id=361)
+    ✔ Created device 'host-12.sen.connect.nm.gov' (id=362)
+    → 1 service(s) created for host-12.sen.connect.nm.gov
+    ✔ Created device 'powervault.sen.connect.nm.gov' (id=363)
+    → 4 service(s) created for powervault.sen.connect.nm.gov
+    ✔ Created device 'host-17.sen.connect.nm.gov' (id=364)
+    → 100 service(s) created for host-17.sen.connect.nm.gov
+    ✔ Created device 'host-18.sen.connect.nm.gov' (id=365)
+    → 100 service(s) created for host-18.sen.connect.nm.gov
+    ✔ Created device 'host-192-168-202-29' (id=366)
+    → 3 service(s) created for host-192-168-202-29
+    ✔ Created device 'vm133.sen.connect.nm.gov' (id=367)
+    → 3 service(s) created for vm133.sen.connect.nm.gov
+    ✔ Created device 'vm132.sen.connect.nm.gov' (id=368)
+    → 3 service(s) created for vm132.sen.connect.nm.gov
+    ✔ Created device 'srv-139.sen.connect.nm.gov' (id=369)
+    → 2 service(s) created for srv-139.sen.connect.nm.gov
+    ✔ Created device 'sen-ad1.sen.connect.nm.gov' (id=370)
+    → 6 service(s) created for sen-ad1.sen.connect.nm.gov
+    ✔ Created device 'project.sen.connect.nm.gov' (id=371)
+    → 2 service(s) created for project.sen.connect.nm.gov
+    ✔ Created device 'rtir.sen.connect.nm.gov' (id=372)
+    → 4 service(s) created for rtir.sen.connect.nm.gov
+    ✔ Created device 'linksys-rouer.sen.connect.nm.gov' (id=373)
+    → 3 service(s) created for linksys-rouer.sen.connect.nm.gov
+    ✔ Created device 'kea-dhcp.sen.connect.nm.gov' (id=374)
+    → 2 service(s) created for kea-dhcp.sen.connect.nm.gov
+    ✔ Created device 'ansible-awx.sen.connect.nm.gov' (id=375)
+    → 1 service(s) created for ansible-awx.sen.connect.nm.gov
+    ✔ Created device 'snipe-it.sen.connect.nm.gov' (id=376)
+    → 2 service(s) created for snipe-it.sen.connect.nm.gov
+    ✔ Created device 'netbox.sen.connect.nm.gov' (id=377)
+    → 3 service(s) created for netbox.sen.connect.nm.gov
     Results: 17 pushed, 0 skipped, 0 failed
-    ✔ Applied scoring to device 242 (total: 7)
-    ✔ Applied scoring to device 243 (total: 23)
-    ✔ Applied scoring to device 244 (total: 23)
-    ✔ Applied scoring to device 245 (total: 23)
-    ✔ Applied scoring to device 246 (total: 23)
-    ✔ Applied scoring to device 247 (total: 22)
-    ✔ Applied scoring to device 248 (total: 23)
-    ✔ Applied scoring to device 249 (total: 30)
-    ✔ Applied scoring to device 250 (total: 32)
-    ✔ Applied scoring to device 251 (total: 30)
-    ✔ Applied scoring to device 252 (total: 30)
-    ✔ Applied scoring to device 253 (total: 30)
-    ✔ Applied scoring to device 254 (total: 30)
-    ✔ Applied scoring to device 255 (total: 32)
-    ✔ Applied scoring to device 256 (total: 30)
-    ✔ Applied scoring to device 257 (total: 30)
-    ✔ Applied scoring to device 258 (total: 55)
+    ✔ Applied scoring to device 361 (total: 7)
+    ✔ Applied scoring to device 362 (total: 23)
+    ✔ Applied scoring to device 363 (total: 23)
+    ✔ Applied scoring to device 364 (total: 23)
+    ✔ Applied scoring to device 365 (total: 23)
+    ✔ Applied scoring to device 366 (total: 22)
+    ✔ Applied scoring to device 367 (total: 23)
+    ✔ Applied scoring to device 368 (total: 30)
+    ✔ Applied scoring to device 369 (total: 32)
+    ✔ Applied scoring to device 370 (total: 30)
+    ✔ Applied scoring to device 371 (total: 30)
+    ✔ Applied scoring to device 372 (total: 30)
+    ✔ Applied scoring to device 373 (total: 30)
+    ✔ Applied scoring to device 374 (total: 32)
+    ✔ Applied scoring to device 375 (total: 30)
+    ✔ Applied scoring to device 376 (total: 30)
+    ✔ Applied scoring to device 377 (total: 55)
+[mailer] Email sent — 0 device(s) flagged.
