@@ -34,11 +34,13 @@ TEST_NAME_MAP = {
     "nmap_open_ports_detected":             "nmap_open_ports",
     "dhcp_active_lease":                    "dhcp_active_lease",
     "dns_resolves_A/PTR":                   "dns_resolves",
-    "snmp_mac/interface_matches_netbox":    "snmp_mac_match",
-    "dhcp_mac_matches_netbox":              "dhcp_mac_match",
-    "dns_hostname_matches_netbox":          "dns_hostname_match",
-    "nmap_fingerprint_is_consistent":       "nmap_fingerprint_match",
-    "mac_mismatch_with_netbox":             "mac_mismatch_penalty",
+    "device_seen_by_multiple_sources": "multi_source",
+    "dhcp_lease_exists": "dhcp_present",
+    "mac_address_observed": "mac_present",
+    "mac_conflict_detected": "mac_conflict",
+    "hostname_observed": "hostname_present",
+    "hostname_conflict_detected": "hostname_conflict",
+    "manufacturer_evidence_exists": "manufacturer_present",
     "snmp_sysObjectID_and_sysDescr_found":  "snmp_sysobjectid",
     "nmap_service_profile":                 "nmap_service_profile",
     "ieee_oui_manufacturer_found":          "ieee_oui_manufacturer",
@@ -344,6 +346,7 @@ if __name__ == "__main__":
                     for t in cat_tests:
                         key = TEST_NAME_MAP.get(t.name.replace(" ", "_"), t.name.replace(" ", "_"))
                         score_data[cat][key] = t.passed
+                        score_data[cat][f"{key}_weight"] = t.weight
                 apply_scoring(device_id, score_data)
             else:
                 print(f"    Could not find device '{name}' in NetBox for scoring")

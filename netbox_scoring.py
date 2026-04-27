@@ -14,11 +14,13 @@ Score data format (from Bryce's scoring module):
         "score": 0-100
     },
     "identity": {
-        "snmp_mac_match":         True/False,
-        "dhcp_mac_match":         True/False,
-        "dns_hostname_match":     True/False,
-        "nmap_fingerprint_match": True/False,
-        "mac_mismatch_penalty":   True/False,
+        "multi_source":         True/False,
+        "dhcp_present":         True/False,
+        "mac_present":     True/False,
+        "mac_conflict": True/False,
+        "hostname_present":   True/False,
+        "hostname_conflict": True/False,
+        "manufacturer_present": True/False,
         "score": 0-100
     },
     "classification": {
@@ -32,6 +34,7 @@ Score data format (from Bryce's scoring module):
 }
 """
 
+from cProfile import label
 import os
 import requests
 import urllib3
@@ -63,11 +66,13 @@ EXISTENCE_CHECKS = {
 }
 
 IDENTITY_CHECKS = {
-    "snmp_mac_match":         "SNMP MAC Match",
-    "dhcp_mac_match":         "DHCP MAC Match",
-    "dns_hostname_match":     "DNS Hostname Match",
-    "nmap_fingerprint_match": "Nmap Fingerprint Match",
-    "mac_mismatch_penalty":   "MAC Mismatch Penalty",
+    "multi_source":         "Seen by Multiple Sources",
+    "dhcp_present":         "DHCP Lease Exists",
+    "mac_present":     "MAC Address Observed",
+    "mac_conflict": "MAC Conflict Detected",
+    "hostname_present":   "Hostname Observed by Sources",
+    "hostname_conflict": "Hostname Conflict Detected",
+    "manufacturer_present": "Manufacturer/Vendor Evidence",
 }
 
 CLASSIFICATION_CHECKS = {
@@ -123,12 +128,14 @@ def _ensure_custom_field(name, label, field_type="integer"):
     return None
 
 
-def _ensure_tag(label, passed):
+def _ensure_tag(label, passed, weight=None):
     """Create a pass or fail tag if it doesn't exist. Returns tag dict."""
     suffix = "pass" if passed else "fail"
-    color  = COLOR_PASS if passed else COLOR_FAIL
-    tag_name = f"{label} — {'Pass' if passed else 'Fail'}"
-    slug = _slug(f"{label}-{suffix}")
+    color = COLOR_PASS if passed else COLOR_FAIL
+
+    weight_str = f" ({weight:+})" if weight is not None else ""
+    tag_name = f"{label}{weight_str} — {'Pass' if passed else 'Fail'}"
+    slug = _slug(f"{label}-{weight}-{suffix}")
 
     url = f"{API}/extras/tags/"
     r = requests.get(url, params={"slug": slug}, **REQ)
@@ -139,6 +146,7 @@ def _ensure_tag(label, passed):
     r = requests.post(url, json=payload, **REQ)
     if r.status_code == 201:
         return r.json()
+
     print(f"    ✘ Failed to create tag '{tag_name}': {r.status_code} {r.text[:200]}")
     return None
 
@@ -170,9 +178,10 @@ def apply_scoring(device_id, score_data):
             if key in category_data and key != "score":
                 passed = bool(category_data[key])
                 # mac_mismatch_penalty is inverted: True = bad
-                if key == "mac_mismatch_penalty":
+                if key in ("mac_conflict", "hostname_conflict"):
                     passed = not passed
-                tag = _ensure_tag(label, passed)
+                weight = category_data.get(f"{key}_weight")
+                tag = _ensure_tag(label, passed, weight)
                 if tag:
                     tag_ids.append({"id": tag["id"]})
 
