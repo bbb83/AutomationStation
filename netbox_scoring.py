@@ -34,7 +34,6 @@ Score data format (from Bryce's scoring module):
 }
 """
 
-from cProfile import label
 import os
 import requests
 import urllib3
