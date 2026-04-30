@@ -22,14 +22,24 @@ snmpCommVersion = 1 if os.getenv("SNMP_VERSION") == "2c" else 0
 
 # scans the subnetfor snmp information
 async def scan_subnet(snmpEngine, hosts):
-    batch_size = 50 # search hosts in baches of 50
+    batch_size = 100 # search hosts in baches of 50
     total_batches = math.ceil(len(hosts) / batch_size)
     results = []
 
     for i in range(0, len(hosts), batch_size):
-        print(f"[snmp] Scanning batch {i // batch_size + 1} of {total_batches}")
         batch = hosts[i:i + batch_size]
+        batch_num = i // batch_size + 1
+        ip_range = f"{batch[0]} - {batch[-1]}"
+
+        print(f"[snmp] Scanning batch {batch_num}/{total_batches} ({ip_range})")
         batch_results = await asyncio.gather(*[query(snmpEngine, ip) for ip in batch])
+        found = [r for r in batch_results if r is not None]
+
+        if found:
+            for r in found:
+                print(f"[snmp] Found device: {r['ip']}")
+        else:
+            print(f"[snmp] No devices found in {ip_range}")
         results.extend(batch_results)
         await asyncio.sleep(0.1)
 
@@ -68,7 +78,7 @@ async def query(snmpEngine, ip):
         errorIndication, errorStatus, errorIndex, varBinds = await iterator
 
         if errorIndication:
-            print(f"[snmp] {ip} — {errorIndication}")
+            pass
         elif errorStatus:
             print("{} at {}".format(
                 errorStatus.prettyPrint(),
@@ -78,10 +88,9 @@ async def query(snmpEngine, ip):
             row = {"ip": str(ip)}
             for label, varBind in zip(oids.keys(), varBinds):
                 row[label] = varBind[1].prettyPrint()
-            print(f"Found SNMP device: {ip}")
             return row
     except Exception as e:
-        print(f"[snmp] Unexpected error on {ip}: {e}")
+        return None
     return None
 
 if __name__ == "__main__":
