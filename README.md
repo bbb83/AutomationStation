@@ -155,11 +155,51 @@ pip install -r requirements.txt
 
 ### Configure Environment Variables (.env)
 
+    # ─── Kea DHCP REST API ─────────────────
+    KEA_API_URL=http:/your-kea-url:port
+    KEA_API_USERNAME=your-kea-username
+    KEA_API_PASSWORD=your-kea-password
+    KEA_COMMAND=lease4-get-all
+    KEA_SERVICE=dhcp4
+
+    # ─── SNMP ──────────────────────────────
+    SNMP_COMMUNITY=your_community_name
+    SNMP_VERSION=2c # 2c or v1
+    SNMP_TARGET_SUBNET=192.168.1.0/24
+
+    # SNMP OIDs
+    SNMP_OID_HOSTNAME=1.3.6.1.2.1.1.5.0
+    SNMP_OID_DESCRIPTION=1.3.6.1.2.1.1.1.0
+    SNMP_OID_UPTIME=1.3.6.1.2.1.1.3.0
+    SNMP_OID_INTERFACES=1.3.6.1.2.1.2.2.1.2
+
+    # ─── DNS ───────────────────────────────
+    DNS_SERVER=192.168.1.0
+    DNS_DOMAIN=your.domain
+
+    # ─── NetBox ────────────────────────────
     NETBOX_URL=http://your-netbox-url
-    NETBOX_TOKEN=your_api_token
+    NETBOX_TOKEN=your-netbox-token
+
+    # ─── Network ───────────────────────────
     SUBNET=192.168.1.0/24
+    DHCP_POOL_START=192.168.1.1
+    DHCP_POOL_END=192.168.1.254
+
+    # ─── Confidence Scoring ────────────────
     CONFIDENCE_THRESHOLD=75
+
+    # ─── Database ───────────────────────────
     DATABASE_URL=sqlite:///automation_station.db
+
+    # ─── SMTP ───────────────────────────────
+    SMTP_HOST=your.smtp.server
+    SMTP_PORT=587
+    SMTP_USER=smtp-service-username/key
+    SMTP_PASS=smtp-service-password/token
+    MAIL_FROM=sender.email@domain
+    MAIL_TO=receiever.email.1@domain, receiever.email.2@domain
+    MAIL_REPORT_THRESHOLD=40
 
 ### Initialize Database
 
