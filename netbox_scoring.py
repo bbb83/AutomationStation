@@ -53,6 +53,31 @@ HEADERS = {
 }
 REQ = dict(headers=HEADERS, timeout=15, verify=False)
 
+EXISTENCE_REFERENCE = (
+    "SNMP Response (+50) — SNMP — Confirms direct communication with the device | "
+    "Nmap Open Ports (+25) — Nmap — Device is reachable and running services | "
+    "DHCP Active Lease (+20) — DHCP — Device has an active lease | "
+    "DNS Resolution (+5) — DNS — Forward or reverse lookup resolved"
+)
+
+IDENTITY_REFERENCE = (
+    "Multi-Source Presence (+10–30) — Correlation — More sources increase confidence | "
+    "MAC Address Match (+25) — Nmap + DHCP — Matching MAC confirms identity | "
+    "MAC Address Observed (+10) — Nmap/DHCP — Basic identifier | "
+    "DHCP Presence (+10) — DHCP — Confirms active management | "
+    "Hostname Agreement (+10–20) — SNMP/DHCP/DNS — Matching hostnames increase confidence | "
+    "Manufacturer Evidence (+10) — OUI/Nmap — Identifies vendor | "
+    "MAC Conflict (-30) — Correlation — Multiple MACs reduce confidence | "
+    "Hostname Conflict (-15) — Correlation — Conflicting hostnames reduce confidence"
+)
+
+CLASSIFICATION_REFERENCE = (
+    "SNMP System Info (+60) — SNMP — Detailed system identification | "
+    "Nmap Service Profile (+25) — Nmap — Identifies services and role | "
+    "OUI Manufacturer (+15) — IEEE OUI — Maps MAC to vendor | "
+    "DNS Naming Hints (+5) — DNS — Hostname patterns suggest type"
+)
+
 # ── Colors ───────────────────────────────────────────────────────────────────
 COLOR_PASS = "4caf50"   # green
 COLOR_FAIL = "f44336"   # red
@@ -90,6 +115,9 @@ CUSTOM_FIELDS = [
     {"name": "confidence_total",          "label": "Confidence: Total",          "type": "integer"},
     {"name": "last_seen",                 "label": "Last Seen",                  "type": "date"},
     {"name": "primary_mac",               "label": "Primary MAC",                "type": "text"},
+    {"name": "scoring_ref_existence", "label": "Scoring Ref: Existence", "type": "text"},
+    {"name": "scoring_ref_identity", "label": "Scoring Ref: Identity", "type": "text"},
+    {"name": "scoring_ref_classification", "label": "Scoring Ref: Classification", "type": "text"},
 ]
 
 
@@ -195,6 +223,9 @@ def apply_scoring(device_id, score_data):
 
     # ── Build patch payload ──────────────────────────────────────────────
     patch = {"custom_fields": {}}
+    patch["custom_fields"]["scoring_ref_existence"] = EXISTENCE_REFERENCE
+    patch["custom_fields"]["scoring_ref_identity"] = IDENTITY_REFERENCE
+    patch["custom_fields"]["scoring_ref_classification"] = CLASSIFICATION_REFERENCE
 
     if "score" in existence:
         patch["custom_fields"]["confidence_existence"] = existence["score"]
