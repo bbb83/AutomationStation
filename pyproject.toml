@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "automation-station"
+version = "0.1.0"
+description = "Network device discovery and inventory automation pipeline"
+requires-python = ">=3.10"
+dependencies = [
+    "pysnmp==7.1.26",
+    "python-dotenv==1.2.2",
+    "Requests==2.33.1",
+    "rich==15.0.0",
+    "urllib3==1.26.5",
+]
+
+[project.scripts]
+automation-station = "main:main"
+automation-station-launch = "launcher:main"
+automation-station-cleanup = "netbox_cleanup:main"
+automation-station-test = "netbox_api_tester:main"
+
+[tool.setuptools]
+py-modules = [
+    "main",
+    "launcher",
+    "cidr",
+    "db",
+    "dhcp",
+    "dns_lookup",
+    "mail",
+    "netbox_api_tester",
+    "netbox_cleanup",
+    "netbox_integration",
+    "netbox_scoring",
+    "parser",
+    "runner",
+    "scan",
+    "schema",
+    "snmpnetbox",
+    "validate_env",
+]
+
+[tool.setuptools.packages.find]
+include = ["models*", "scoring*", "collectors*", "ieeething*", "netbox*"]
+exclude = ["__pycache__*"]

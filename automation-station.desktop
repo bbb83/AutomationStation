@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Automation Station
+Comment=Run network discovery and inventory
+Exec=/opt/netbox/venv/bin/automation-station-launch
+Terminal=true
+Icon=network-workgroup
+Categories=Network;System;

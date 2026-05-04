@@ -140,6 +140,7 @@ def snmp_to_evidence(snmp_rows): #for snmp results to go from database to Eviden
 
     return evidence
 
+
 def dhcp_to_evidence(dhcp_rows):
     evidence = []
 
@@ -157,6 +158,7 @@ def dhcp_to_evidence(dhcp_rows):
         ))
 
     return evidence
+
 
 def dns_to_evidence(hosts):
     evidence = []
@@ -195,6 +197,7 @@ def dns_to_evidence(hosts):
 
     return evidence
 
+
 def check_netbox():
     import requests
     print("[4] Checking NetBox...")
@@ -213,7 +216,8 @@ def check_netbox():
         print(f"    Could not reach NetBox: {e}")
         return False
 
-if __name__ == "__main__":
+
+def main():
     try:
         validate_env()
     except ValueError as e:
@@ -355,3 +359,7 @@ if __name__ == "__main__":
                 print(f"    Could not find device '{name}' in NetBox for scoring")
 
         send_issue_report(scored_results)
+
+
+if __name__ == "__main__":
+    main()

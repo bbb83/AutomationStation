@@ -92,10 +92,10 @@ EXISTENCE_CHECKS = {
 IDENTITY_CHECKS = {
     "multi_source":         "Seen by Multiple Sources",
     "dhcp_present":         "DHCP Lease Exists",
-    "mac_present":     "MAC Address Observed",
-    "mac_conflict": "MAC Conflict Detected",
-    "hostname_present":   "Hostname Observed by Sources",
-    "hostname_conflict": "Hostname Conflict Detected",
+    "mac_present":          "MAC Address Observed",
+    "mac_conflict":         "MAC Conflict Detected",
+    "hostname_present":     "Hostname Observed by Sources",
+    "hostname_conflict":    "Hostname Conflict Detected",
     "manufacturer_present": "Manufacturer/Vendor Evidence",
 }
 
@@ -108,15 +108,16 @@ CLASSIFICATION_CHECKS = {
 
 # ── Custom fields to create on Device ────────────────────────────────────────
 CUSTOM_FIELDS = [
-    {"name": "confidence_existence",      "label": "Confidence: Existence",      "type": "integer"},
-    {"name": "confidence_identity",       "label": "Confidence: Identity",       "type": "integer"},
-    {"name": "confidence_classification", "label": "Confidence: Classification", "type": "integer"},
-    {"name": "confidence_total",          "label": "Confidence: Total",          "type": "integer"},
-    {"name": "last_seen",                 "label": "Last Seen",                  "type": "date"},
-    {"name": "primary_mac",               "label": "Primary MAC",                "type": "text"},
-    {"name": "scoring_ref_existence", "label": "Scoring Ref: Existence", "type": "text"},
-    {"name": "scoring_ref_identity", "label": "Scoring Ref: Identity", "type": "text"},
+    {"name": "confidence_existence",       "label": "Confidence: Existence",       "type": "integer"},
+    {"name": "confidence_identity",        "label": "Confidence: Identity",        "type": "integer"},
+    {"name": "confidence_classification",  "label": "Confidence: Classification",  "type": "integer"},
+    {"name": "confidence_total",           "label": "Confidence: Total",           "type": "integer"},
+    {"name": "last_seen",                  "label": "Last Seen",                   "type": "date"},
+    {"name": "primary_mac",                "label": "Primary MAC",                 "type": "text"},
+    {"name": "scoring_ref_existence",      "label": "Scoring Ref: Existence",      "type": "text"},
+    {"name": "scoring_ref_identity",       "label": "Scoring Ref: Identity",       "type": "text"},
     {"name": "scoring_ref_classification", "label": "Scoring Ref: Classification", "type": "text"},
+    {"name": "last_scanned",               "label": "Last Scanned",                "type": "datetime"},
 ]
 
 
@@ -204,7 +205,7 @@ def apply_scoring(device_id, score_data):
         for key, label in checks_map.items():
             if key in category_data and key != "score":
                 passed = bool(category_data[key])
-                # mac_mismatch_penalty is inverted: True = bad
+                # conflict checks are inverted: True = bad
                 if key in ("mac_conflict", "hostname_conflict"):
                     passed = not passed
                 weight = category_data.get(f"{key}_weight")
@@ -235,8 +236,10 @@ def apply_scoring(device_id, score_data):
     if "total" in score_data:
         patch["custom_fields"]["confidence_total"] = score_data["total"]
 
-    # always stamp last_seen on every scoring pass
-    patch["custom_fields"]["last_seen"] = datetime.now(timezone.utc).date().isoformat()
+    # always stamp last_seen and last_scanned on every scoring pass
+    now = datetime.now(timezone.utc)
+    patch["custom_fields"]["last_seen"] = now.date().isoformat()
+    patch["custom_fields"]["last_scanned"] = now.isoformat()
 
     if tag_ids:
         patch["tags"] = tag_ids
