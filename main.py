@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from dotenv import load_dotenv
 from mail import send_issue_report
+from validate_env import validate_env
 load_dotenv()
 
 import os, sys, json, asyncio, urllib3
@@ -213,8 +214,10 @@ def check_netbox():
         return False
 
 if __name__ == "__main__":
-    if not SUBNET:
-        print("SUBNET not set in .env")
+    try:
+        validate_env()
+    except ValueError as e:
+        print(e)
         sys.exit(1)
 
     init_snmp_db()
