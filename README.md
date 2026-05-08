@@ -16,7 +16,7 @@ into a structured database, applies a weighted confidence scoring model,
 and synchronizes all discovered devices into NetBox with validation
 transparency.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mwSHJNeIb-M?si=z8Unyr13hWDafM4m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![Youtube Video]()](https://www.youtube.com/watch?v=mwSHJNeIb-M)
 
 ------------------------------------------------------------------------
 
