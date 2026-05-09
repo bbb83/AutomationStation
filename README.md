@@ -16,7 +16,7 @@ into a structured database, applies a weighted confidence scoring model,
 and synchronizes all discovered devices into NetBox with validation
 transparency.
 
-[![Youtube Video](image.png)](https://www.youtube.com/watch?v=mwSHJNeIb-M)
+[![Youtube Video](images/thumbnail.png)](https://www.youtube.com/watch?v=mwSHJNeIb-M)
 
 ------------------------------------------------------------------------
 
@@ -58,6 +58,10 @@ transparency.
 -   Custom fields for confidence scores and scoring rubric reference
 -   Color-coded pass/fail tags per check
 -   Last-scanned timestamps on every device
+
+### Populated Device List
+
+![ResultsOutput](images/results.png)
 
 ------------------------------------------------------------------------
 
@@ -132,6 +136,8 @@ Devices below the confidence threshold will:
 This ensures full inventory visibility while maintaining transparency
 about device reliability.
 
+Changes in confidence scores for a device will appear in its changelogs to help record a device's reliability evolving over past iterations.
+![ChangelogDisplay](images/changelog.png)
 ------------------------------------------------------------------------
 
 ## Database Architecture
@@ -196,6 +202,8 @@ applied to the device:
 
 This allows operators to see at a glance which evidence sources backed a
 device's score.
+
+![TagDisplay](images/tags.png)
 
 ------------------------------------------------------------------------
 
@@ -383,4 +391,3 @@ Intended for academic and research use.    Devices are scanned using Nmap and en
     metadata.
 
 ------------------------------------------------------------------------
-
