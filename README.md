@@ -135,8 +135,8 @@ Devices below the confidence threshold will:
 
 This ensures full inventory visibility while maintaining transparency
 about device reliability.
-
 Changes in confidence scores for a device will appear in its changelogs to help record a device's reliability evolving over past iterations.
+
 ![ChangelogDisplay](images/changelog.png)
 ------------------------------------------------------------------------
 
