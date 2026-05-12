@@ -3,7 +3,7 @@
 Automated Network Discovery and NetBox Integration with Confidence-Based
 Validation
 
-(this project was made in a sandbox environment and has no affiliation with Sen.connect.nm.gov or any other etities.)
+(this project was made in a sandbox environment and has no affiliation with Sen.connect.nm.gov or any other entity.)
 
 ------------------------------------------------------------------------
 
